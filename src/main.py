@@ -2,18 +2,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from utils import APIException, sha256
 from models import db, users
-# from flask_jwt_simple import JWTManager, jwt_required, create_jwt
 import os
 
-SQLALCHEMY_DATABASE_URI = os.environ.get('JAWSDB_URL')
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-
 app = Flask(__name__)
-# app.config.from_object("config")
+SQLALCHEMY_DATABASE_URI = os.environ.get('JAWSDB_URL')
 db.init_app(app)
 CORS(app)
-# app.config['JWT_SECRET_KEY'] = 'dfsh3289349yhoelqwru9g'
-# jwt = JWTManager(app)
 
 # create all the table first.
 @app.before_first_request
