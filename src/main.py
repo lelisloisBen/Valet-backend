@@ -5,7 +5,7 @@ from models import db, users
 import os
 
 app = Flask(__name__)
-SQLALCHEMY_DATABASE_URI = os.environ.get('JAWSDB_URL')
+app.config.from_object("config")
 db.init_app(app)
 CORS(app)
 
