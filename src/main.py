@@ -20,7 +20,7 @@ def handle_invalid_usage(error):
 
 @app.route('/')
 def hello_world():
-    return "<div style='text-align: center; background-color: orange'><h1>Backend running...</h1><br/><h3>Welcome back samir</h3><img src='https://cdn.pixabay.com/photo/2020/01/10/15/11/nude-4755496_1280.jpg' width='80%' /></div>"
+    return "<div style='text-align: center; background-color: orange'><h1>Welcome Samir, Backend running...</h1><img src='https://cdn.pixabay.com/photo/2020/01/10/15/11/nude-4755496_1280.jpg' width='80%' /></div>"
 
 @app.route('/login', methods=['POST'])
 def handle_login():
