@@ -87,8 +87,11 @@ def handle_register():
     # ))
     # db.session.commit()
 
-    if body:
-        return body
+    if body is None:
+        return jsonify({
+            'register': 'failed',
+            'msg': 'Nothing in body'
+        })
 
     return jsonify({
         'register': 'success',
