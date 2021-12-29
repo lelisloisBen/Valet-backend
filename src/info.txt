@@ -15,3 +15,34 @@ create table users(
    admin INT NOT NULL DEFAULT 0,
    PRIMARY KEY ( id )
 );
+
+INSERT INTO users (
+   appID,
+	email,
+	firstname,
+	lastname,
+	password,
+	birthdate,
+	gender,
+	address,
+	city,
+	state,
+	zipCode,
+	phone,
+	admin
+   )
+VALUES (
+   123456,
+	"samirbenzada@gmail.com",
+	"samir",
+	"benzada",
+	"toulouse.32",
+	"04/27/1984",
+	"male",
+	"3250 NW 151st Terrace",
+	"Opa-Locka",
+	"Florida",
+	"33054",
+	"7862962400",
+	1
+);
