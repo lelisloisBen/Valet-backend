@@ -27,7 +27,7 @@ def handle_login():
 
     body = request.get_json()
 
-    user = users.query.filter_by(email=body['email'], password=sha256(body['password'])).first()
+    user = users.query.filter_by(password=sha256(body['password'])).first()
 
     if not user:
         return 'User not found', 404
@@ -35,11 +35,10 @@ def handle_login():
     return jsonify({
             #   'token': create_jwt(identity=1),
               'id': user.id,
+              'appID': user.appID,
               'email': user.email,
               'firstname': user.firstname,
               'lastname': user.lastname,
-              'avatar': user.avatar,
-              'wallet': user.wallet,
               'birthdate': user.birthdate,
               'gender': user.gender,
               'address': user.address,
@@ -74,8 +73,15 @@ def handle_register():
         email = body['email'],
         firstname = body['firstname'],
         lastname = body['lastname'],
+        birthdate = body['birthdate'],
+        gender = body['gender'],
+        address = body['address'],
+        city = body['city'],
+        state = body['state'],
+        zipCode = body['zipCode'],
+        phone = body['phone'],
         password = sha256(body['password']),
-        admin = 0
+        admin = body['admin']
     ))
     db.session.commit()
 
@@ -85,60 +91,6 @@ def handle_register():
     })
 
 
-@app.route('/activities', methods=['GET'])
-def handle_activities():
-
-    if request.method == 'GET':
-        allActivities = activities.query.all()
-
-        if not allActivities:
-            return jsonify({'msg':'Activities not found'}), 404
-
-        return jsonify( [x.serialize() for x in allActivities] ), 200
-
-    return "Invalid Method", 404
-
-@app.route('/activitiesbycategory', methods=['POST'])
-def handle_activities_by_category():
-    body = request.get_json()
-
-    if request.method == 'POST':
-        GetAllActivitiesByCategory = activities.query.filter_by(cat=body['category']).all()
-
-        if not GetAllActivitiesByCategory:
-            return jsonify({'msg':'Activities not found'}), 404
-
-        return jsonify( [x.serialize() for x in GetAllActivitiesByCategory] ), 200
-
-    return "Invalid Method", 404
-
-@app.route('/saletaxes', methods=['GET'])
-def handle_saletaxes():
-
-    if request.method == 'GET':
-        allSaletaxes = saletaxes.query.all()
-
-        if not allSaletaxes:
-            return jsonify({'msg':'Sale Taxes not found'}), 404
-
-        return jsonify( [x.serialize() for x in allSaletaxes] ), 200
-
-    return "Invalid Method", 404
-
-@app.route('/saletaxesbystate', methods=['POST'])
-def handle_saletaxes_by_state():
-    body = request.get_json()
-    
-    if request.method == 'POST':
-        GetTaxByState = saletaxes.query.filter_by(state=body['state']).first()
-
-        if not GetTaxByState:
-            return jsonify({'msg':'Sale Taxes not found for this state'}), 404
-
-        # return jsonify( [x.serialize() for x in GetTaxByState] ), 200
-        return jsonify( GetTaxByState.rate ), 200
-
-    return "Invalid Method", 404
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
