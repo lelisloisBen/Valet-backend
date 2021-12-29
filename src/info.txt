@@ -1,6 +1,6 @@
 create table users(
    id INT NOT NULL AUTO_INCREMENT,
-   appID INT NOT NULL,
+   appID VARCHAR(200) NOT NULL,
    email VARCHAR(120),
    firstname VARCHAR(120),
    lastname VARCHAR(120),
@@ -32,7 +32,7 @@ INSERT INTO users (
 	admin
    )
 VALUES (
-   123456,
+   "123456",
 	"samirbenzada@gmail.com",
 	"samir",
 	"benzada",
