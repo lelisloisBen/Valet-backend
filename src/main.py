@@ -70,22 +70,25 @@ def handle_register():
     # if 'email' not in body:
     #     raise APIException('You need to specify the email', status_code=400)
 
-    db.session.add(users(
-        appID = body['appID'],
-        email = body['email'],
-        firstname = body['firstname'],
-        lastname = body['lastname'],
-        password = sha256(body['password']),
-        birthdate = body['birthdate'],
-        gender = body['gender'],
-        address = body['address'],
-        city = body['city'],
-        state = body['state'],
-        zipCode = body['zipCode'],
-        phone = body['phone'],
-        admin = body['admin']
-    ))
-    db.session.commit()
+    # db.session.add(users(
+    #     appID = body['appID'],
+    #     email = body['email'],
+    #     firstname = body['firstname'],
+    #     lastname = body['lastname'],
+    #     password = sha256(body['password']),
+    #     birthdate = body['birthdate'],
+    #     gender = body['gender'],
+    #     address = body['address'],
+    #     city = body['city'],
+    #     state = body['state'],
+    #     zipCode = body['zipCode'],
+    #     phone = body['phone'],
+    #     admin = body['admin']
+    # ))
+    # db.session.commit()
+
+    if body:
+        return body
 
     return jsonify({
         'register': 'success',
