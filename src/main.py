@@ -31,7 +31,7 @@ def handle_login():
     body = request.get_json()
 
     # user = users.query.filter_by(password=sha256(body['password'])).first()
-    user = users.query.filter_by(body['password']).first()
+    user = users.query.filter_by(password=body['password']).first()
 
     if not user:
         return 'User not found', 404
