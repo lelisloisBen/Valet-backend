@@ -28,8 +28,9 @@ def handle_login():
 
     body = request.get_json()
 
-    # user = users.query.filter_by(password=sha256(body['password'])).first()
-    user = users.query.filter_by(password=body['password']).first()
+    user = users.query.filter_by(password=sha256(body['password'])).first()
+    # if testing without sha256
+    # user = users.query.filter_by(password=body['password']).first()
 
     if not user:
         return 'User not found', 404
@@ -57,18 +58,22 @@ def handle_signup():
 
     if body is None:
         raise APIException("You need to specify the request body as a json object", status_code=400)
-    if 'firstname' not in body and 'lastname' not in body:
-        raise APIException("You need to specify the first name and last name", status_code=400)
-    if 'password' not in body and 'email' not in body:
-        raise APIException("You need to specify the password and email", status_code=400)
-    if 'firstname' not in body:
-        raise APIException('You need to specify the first name', status_code=400)
-    if 'lastname' not in body:
-        raise APIException('You need to specify the last name', status_code=400)
-    if 'password' not in body:
-        raise APIException('You need to specify the password', status_code=400)
-    if 'email' not in body:
-        raise APIException('You need to specify the email', status_code=400)
+
+    for el in body:
+        if el not in body:
+            raise APIException(str(el)+"cannot be empty", status_code=400)
+    # if 'firstname' not in body and 'lastname' not in body:
+    #     raise APIException("You need to specify the first name and last name", status_code=400)
+    # if 'password' not in body and 'email' not in body:
+    #     raise APIException("You need to specify the password and email", status_code=400)
+    # if 'firstname' not in body:
+    #     raise APIException('You need to specify the first name', status_code=400)
+    # if 'lastname' not in body:
+    #     raise APIException('You need to specify the last name', status_code=400)
+    # if 'password' not in body:
+    #     raise APIException('You need to specify the password', status_code=400)
+    # if 'email' not in body:
+    #     raise APIException('You need to specify the email', status_code=400)
 
     db.session.add(users(
         appID = body['appID'],
@@ -91,55 +96,6 @@ def handle_signup():
         'register': 'success',
         'msg': 'Successfully Registered'
     })
-
-@app.route('/register', methods=['POST'])
-def handle_register():
-
-    body = request.get_json()
-
-    # if body is None:
-    #     raise APIException("You need to specify the request body as a json object", status_code=400)
-    # if 'firstname' not in body and 'lastname' not in body:
-    #     raise APIException("You need to specify the first name and last name", status_code=400)
-    # if 'password' not in body and 'email' not in body:
-    #     raise APIException("You need to specify the password and email", status_code=400)
-    # if 'firstname' not in body:
-    #     raise APIException('You need to specify the first name', status_code=400)
-    # if 'lastname' not in body:
-    #     raise APIException('You need to specify the last name', status_code=400)
-    # if 'password' not in body:
-    #     raise APIException('You need to specify the password', status_code=400)
-    # if 'email' not in body:
-    #     raise APIException('You need to specify the email', status_code=400)
-
-    # db.session.add(users(
-    #     appID = body['appID'],
-    #     email = body['email'],
-    #     firstname = body['firstname'],
-    #     lastname = body['lastname'],
-    #     password = sha256(body['password']),
-    #     birthdate = body['birthdate'],
-    #     gender = body['gender'],
-    #     address = body['address'],
-    #     city = body['city'],
-    #     state = body['state'],
-    #     zipCode = body['zipCode'],
-    #     phone = body['phone'],
-    #     admin = body['admin']
-    # ))
-    # db.session.commit()
-
-    if body is None:
-        return jsonify({
-            'register': 'failed',
-            'msg': 'Nothing in body'
-        })
-
-    return jsonify({
-        'register': 'success',
-        'msg': 'Successfully Registered'
-    })
-
 
 
 # this only runs if `$ python src/main.py` is executed
