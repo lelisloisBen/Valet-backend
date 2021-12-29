@@ -70,10 +70,11 @@ def handle_register():
         raise APIException('You need to specify the email', status_code=400)
 
     db.session.add(users(
-        email = body['email'],
         appID = body['appID'],
+        email = body['email'],
         firstname = body['firstname'],
         lastname = body['lastname'],
+        password = sha256(body['password']),
         birthdate = body['birthdate'],
         gender = body['gender'],
         address = body['address'],
@@ -81,7 +82,6 @@ def handle_register():
         state = body['state'],
         zipCode = body['zipCode'],
         phone = body['phone'],
-        password = sha256(body['password']),
         admin = body['admin']
     ))
     db.session.commit()
