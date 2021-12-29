@@ -1,0 +1,6 @@
+import os
+
+SQLALCHEMY_DATABASE_URI = os.environ.get('JAWSDB_URL')
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# JWT_SECRET_KEY = 'dfsh3289349yhoelqwru9g'
