@@ -15,6 +15,10 @@ CORS(app)
 # app.config['JWT_SECRET_KEY'] = 'dfsh3289349yhoelqwru9g'
 # jwt = JWTManager(app)
 
+# create all the table first.
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
