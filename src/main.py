@@ -56,14 +56,8 @@ def handle_signup():
 
     body = request.get_json()
 
-    user = users.query.all()
-
     if body is None:
         raise APIException("You need to specify the request body as a json object", status_code=400)
-    if user.password == body['password']:
-        raise APIException("This password already exist, choose another one", status_code=400)
-    if user.email == body['email']:
-        raise APIException("This email already exist, contact your admin", status_code=400)
 
     if 'firstname' not in body and 'lastname' not in body:
         raise APIException("You need to specify the first name and last name", status_code=400)
