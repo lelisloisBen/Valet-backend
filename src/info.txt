@@ -1,11 +1,10 @@
 create table users(
    id INT NOT NULL AUTO_INCREMENT,
+   appID INT NOT NULL,
    email VARCHAR(120),
    firstname VARCHAR(120),
    lastname VARCHAR(120),
-   password VARCHAR(80) NOT NULL,
-   avatar VARCHAR(220),
-   wallet FLOAT(5) DEFAULT 0,
+   password VARCHAR(80) NOT NULL UNIQUE,
    birthdate VARCHAR(120),
    gender VARCHAR(120),
    address VARCHAR(120),

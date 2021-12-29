@@ -4,12 +4,11 @@ db = SQLAlchemy()
 
 class users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    appID = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     firstname = db.Column(db.String(120), nullable=False)
     lastname = db.Column(db.String(120) )
-    password = db.Column(db.String(80), nullable=False)
-    avatar = db.Column(db.String(220), default='avatar.png')
-    wallet = db.Column(db.Float(5), default=0)
+    password = db.Column(db.String(80), nullable=False, unique=True)
     birthdate = db.Column(db.String(120))
     gender = db.Column(db.String(120))
     address = db.Column(db.String(120))
@@ -25,11 +24,10 @@ class users(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "appID": self.appID,
             "email": self.email,
             "firstname": self.firstname,
             "lastname": self.lastname,
-            "avatar": self.avatar,
-            "wallet": self.wallet,
             "birthdate": self.birthdate,
             "gender": self.gender,
             "address": self.address,
