@@ -71,6 +71,7 @@ def handle_register():
 
     db.session.add(users(
         email = body['email'],
+        appID = body['appID'],
         firstname = body['firstname'],
         lastname = body['lastname'],
         birthdate = body['birthdate'],
