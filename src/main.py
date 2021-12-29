@@ -59,22 +59,38 @@ def handle_signup():
     if body is None:
         raise APIException("You need to specify the request body as a json object", status_code=400)
 
-    for el in body:
-        if el not in body:
-            raise APIException(str(el)+"cannot be empty", status_code=400)
-    # if 'firstname' not in body and 'lastname' not in body:
-    #     raise APIException("You need to specify the first name and last name", status_code=400)
-    # if 'password' not in body and 'email' not in body:
-    #     raise APIException("You need to specify the password and email", status_code=400)
-    # if 'firstname' not in body:
-    #     raise APIException('You need to specify the first name', status_code=400)
-    # if 'lastname' not in body:
-    #     raise APIException('You need to specify the last name', status_code=400)
-    # if 'password' not in body:
-    #     raise APIException('You need to specify the password', status_code=400)
-    # if 'email' not in body:
-    #     raise APIException('You need to specify the email', status_code=400)
-
+    if 'firstname' not in body and 'lastname' not in body:
+        raise APIException("You need to specify the first name and last name", status_code=400)
+    if 'password' not in body and 'email' not in body:
+        raise APIException("You need to specify the password and email", status_code=400)
+    if 'firstname' not in body:
+        raise APIException('You need to specify the first name', status_code=400)
+    if 'lastname' not in body:
+        raise APIException('You need to specify the last name', status_code=400)
+    if 'password' not in body:
+        raise APIException('You need to specify the password', status_code=400)
+    if 'email' not in body:
+        raise APIException('You need to specify the email', status_code=400)
+    if 'appID' not in body:
+        raise APIException('You need to specify the application ID', status_code=400)
+    if 'birthdate' not in body:
+        raise APIException('You need to specify the birth date', status_code=400)
+    if 'gender' not in body:
+        raise APIException('You need to specify the gender', status_code=400)
+    if 'address' not in body:
+        raise APIException('You need to specify the address', status_code=400)
+    if 'city' not in body:
+        raise APIException('You need to specify the city', status_code=400)
+    if 'state' not in body:
+        raise APIException('You need to specify the state', status_code=400)
+    if 'zipCode' not in body:
+        raise APIException('You need to specify the zipCode', status_code=400)
+    if 'phone' not in body:
+        raise APIException('You need to specify the phone', status_code=400)
+    if 'admin' not in body:
+        raise APIException('You need to specify the admin number', status_code=400)
+    
+    
     db.session.add(users(
         appID = body['appID'],
         email = body['email'],
