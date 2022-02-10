@@ -26,13 +26,14 @@ def hello_world():
 @app.route('/tag', methods=['POST'])
 def handle_tagReader():
 
-    body = request.get_json()
-    myTag = readTag(body['tag'])
+    if request.method == 'POST':
+        f = request.files['file']
+        myTag = readTag(f)
 
-    return jsonify({
-        'msg': 'success',
-        'tag': myTag
-    })
+        return jsonify({
+            'msg': 'success',
+            'tag': myTag
+        })
 
 @app.route('/login', methods=['POST'])
 def handle_login():
