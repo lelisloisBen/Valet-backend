@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from utils import APIException, sha256
+from utils import APIException, sha256, readTag
 from models import db, users
 import os
 
@@ -22,6 +22,17 @@ def handle_invalid_usage(error):
 @app.route('/')
 def hello_world():
     return "<div style='text-align: center; background-color: orange'><h1>Welcome Samir, Backend running...</h1><img src='https://cdn.pixabay.com/photo/2020/01/10/15/11/nude-4755496_1280.jpg' width='80%' /></div>"
+
+@app.route('/tag', methods=['POST'])
+def handle_tagReader():
+
+    body = request.get_json()
+    myTag = readTag(body['tag'])
+
+    return jsonify({
+        'msg': 'success',
+        'tag': myTag
+    })
 
 @app.route('/login', methods=['POST'])
 def handle_login():
