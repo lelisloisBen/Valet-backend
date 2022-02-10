@@ -46,7 +46,7 @@ cropped = new_image[topx:bottomx + 1, topy:bottomy + 1]
 # read the tag
 # pytesseract.pytesseract.tesseract_cmd = r'C:\Users\USER\AppData\Local\Tesseract-OCR\tesseract.exe'
 text = pytesseract.image_to_string(cropped, config = '--psm 11')
-print("Got your tag, bitch!:", text)
+print("Got your tag!", text)
 
 # the following line of code is used only for testing
 # cv2.imwrite('cropped.jpg', cropped)
