@@ -1,3 +1,5 @@
+cv2
+python3-opencv
 opencv-python
 Flask
 Flask-Cors
