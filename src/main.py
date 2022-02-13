@@ -5,11 +5,8 @@ from models import db, users
 import os
 from werkzeug.utils import secure_filename 
 
-UPLOAD_FOLDER = '/src/img'
-
 app = Flask(__name__)
 app.config.from_object("config")
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 db.init_app(app)
 CORS(app)
 
@@ -31,12 +28,7 @@ def hello_world():
 def handle_tagReader():
 
     if request.method == 'POST':
-        file = request.files['image']
-        # save file            
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(file_path)
-        img_path = file_path
+        file = request.files['image']     
 
         if file.filename == "":
             return jsonify({
@@ -44,7 +36,7 @@ def handle_tagReader():
                     'mess': 'Please select a file'
                 })
         else:
-            myTag = readTag(img_path)
+            myTag = readTag(file)
             return jsonify({
                 'msg': 'success',
                 'tag': myTag

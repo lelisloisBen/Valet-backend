@@ -42,7 +42,8 @@ def ResizeWithAspectRatio(image, width=None, height=None, inter=cv2.INTER_AREA):
 
 def readTag(myImg):
     #read and resize image
-    img = cv2.imread(myImg, cv2.IMREAD_COLOR)
+    img = cv2.imdecode(numpy.fromstring(myImg.read(), numpy.uint8), cv2.IMREAD_COLOR)
+    # img = cv2.imread(myImg, cv2.IMREAD_COLOR)
     img = ResizeWithAspectRatio(img, width=620)
 
     # convert image to grayscale
