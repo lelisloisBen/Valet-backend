@@ -9,3 +9,4 @@ imutils
 numpy
 pytesseract
 tesseract
+werkzeug

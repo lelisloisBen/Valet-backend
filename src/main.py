@@ -3,6 +3,7 @@ from flask_cors import CORS
 from utils import APIException, sha256, readTag
 from models import db, users
 import os
+from werkzeug.utils import secure_filename 
 
 app = Flask(__name__)
 app.config.from_object("config")
