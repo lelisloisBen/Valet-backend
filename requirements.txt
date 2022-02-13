@@ -9,4 +9,5 @@ imutils
 numpy
 pytesseract
 tesseract-ocr
-libtesseract-dev
+libleptonica-dev
+tesseract-ocr-dev
