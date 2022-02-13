@@ -8,5 +8,4 @@ gunicorn
 imutils
 numpy
 tesseract
-tesseract-ocr
 pytesseract
