@@ -7,4 +7,6 @@ flask_jwt_simple
 gunicorn
 imutils
 numpy
+tesseract
+tesseract-ocr
 pytesseract
