@@ -81,5 +81,6 @@ def readTag(myImg):
     cropped = new_image[topx:bottomx + 1, topy:bottomy + 1]
 
     # read the tag
+    pytesseract.pytesseract.tesseract_cmd = r"/usr/bin/tesseract"
     tagtText = pytesseract.image_to_string(cropped, config = '--psm 11')
     return tagtText
