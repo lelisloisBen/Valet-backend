@@ -28,13 +28,19 @@ def handle_tagReader():
 
     if request.method == 'POST':
         file = request.files['image']
+        # save file            
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(dressrank.config['SHOW_IMG_FOLDER'], filename);
+        file.save(file_path)
+        img_path = file_path
+
         if file.filename == "":
             return jsonify({
                     'msg': 'error',
                     'mess': 'Please select a file'
                 })
         else:
-            myTag = readTag(file.filename)
+            myTag = readTag(img_path)
             return jsonify({
                 'msg': 'success',
                 'tag': myTag
