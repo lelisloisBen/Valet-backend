@@ -30,11 +30,11 @@ def handle_tagReader():
         file = request.files['image']
         if file.filename == "":
             return jsonify({
-                    'received': 'nope its empty',
-                    'msg': 'Please select a file'
+                    'msg': 'error',
+                    'mess': 'Please select a file'
                 })
         else:
-            myTag = readTag(f)
+            myTag = readTag(file)
             return jsonify({
                 'msg': 'success',
                 'tag': myTag
