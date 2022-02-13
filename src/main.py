@@ -34,7 +34,7 @@ def handle_tagReader():
                     'mess': 'Please select a file'
                 })
         else:
-            myTag = readTag(file)
+            myTag = readTag(file.filename)
             return jsonify({
                 'msg': 'success',
                 'tag': myTag
