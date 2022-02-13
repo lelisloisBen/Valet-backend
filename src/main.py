@@ -5,8 +5,11 @@ from models import db, users
 import os
 from werkzeug.utils import secure_filename 
 
+UPLOAD_FOLDER = '/src/img'
+
 app = Flask(__name__)
 app.config.from_object("config")
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 db.init_app(app)
 CORS(app)
 
@@ -31,7 +34,7 @@ def handle_tagReader():
         file = request.files['image']
         # save file            
         filename = secure_filename(file.filename)
-        file_path = os.path.join('img', filename);
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
         img_path = file_path
 
