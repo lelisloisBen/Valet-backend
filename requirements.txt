@@ -8,3 +8,5 @@ gunicorn
 imutils
 numpy
 pytesseract
+tesseract-ocr
+libtesseract-dev
