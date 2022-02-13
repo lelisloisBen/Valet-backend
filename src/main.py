@@ -34,16 +34,11 @@ def handle_tagReader():
                     'msg': 'Please select a file'
                 })
         else:
+            myTag = readTag(f)
             return jsonify({
-                    'received': 'yes',
-                    'msg': 'file is here'
-                })
-
-        # myTag = readTag(f)
-        # return jsonify({
-        #     'msg': 'success',
-        #     'tag': myTag
-        # })
+                'msg': 'success',
+                'tag': myTag
+            })
 
 @app.route('/login', methods=['POST'])
 def handle_login():
