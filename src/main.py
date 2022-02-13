@@ -27,13 +27,23 @@ def hello_world():
 def handle_tagReader():
 
     if request.method == 'POST':
-        f = request.files['file']
-        myTag = readTag(f)
+        file = request.files['image']
+        if file.filename == "":
+            return jsonify({
+                    'received': 'nope its empty',
+                    'msg': 'Please select a file'
+                })
+        else:
+            return jsonify({
+                    'received': 'yes',
+                    'msg': 'file is here'
+                })
 
-        return jsonify({
-            'msg': 'success',
-            'tag': myTag
-        })
+        # myTag = readTag(f)
+        # return jsonify({
+        #     'msg': 'success',
+        #     'tag': myTag
+        # })
 
 @app.route('/login', methods=['POST'])
 def handle_login():
