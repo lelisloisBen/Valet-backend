@@ -46,3 +46,17 @@ VALUES (
 	"7862962400",
 	1
 );
+
+requierment.txt old
+opencv-python-headless
+Flask
+Flask-Cors
+flask-sqlalchemy
+Flask-MySQLdb
+flask_jwt_simple
+gunicorn
+imutils
+numpy
+libtesseract
+tesseract
+pytesseract
